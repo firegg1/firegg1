@@ -7,15 +7,15 @@ template<typename T> void disp(T* a, int n) {
 		cout << a[i] << " ";
 	cout << endl;
 }
-class point {//¶¨ÒåÆ½ÃæµãÀà
-public://ÖØÔØÁËÔËËã·û ÊäÈë>> Êä³ö<< ¸³Öµ= È¡·´- ÏàµÈÅÐ±ð== ²»µÈÅÐ±ð!= Ð¡ÓÚ< ´óÓÚ> Ïà¼Ó+ Ïà¼õ- µã³Ë* 
-	point(int fx = 1, int fy = 1) :x(fx), y(fy) {};//¹¹Ôìº¯Êý£¬ÎÞ²ÎÊäÈëÄ¬ÈÏÎª£¨1,1£©£¬ÓÐ²ÎÊäÈëÄ¬ÈÏ¸³Öµ¡£/* { x = fx; y = fy; }*/
-	friend ostream& operator<<(ostream &os, const point& p) {//ÖØÔØÁËÊä³öº¯Êý
-		os << "(" << p.x << "," << p.y << ")";//Êä³ö£¨x,y£©
+class point {//å®šä¹‰å¹³é¢ç‚¹ç±»
+public://é‡è½½äº†è¿ç®—ç¬¦ è¾“å…¥>> è¾“å‡º<< èµ‹å€¼= å–å- ç›¸ç­‰åˆ¤åˆ«== ä¸ç­‰åˆ¤åˆ«!= å°äºŽ< å¤§äºŽ> ç›¸åŠ + ç›¸å‡- ç‚¹ä¹˜* 
+	point(int fx = 1, int fy = 1) :x(fx), y(fy) {};//æž„é€ å‡½æ•°ï¼Œæ— å‚è¾“å…¥é»˜è®¤ä¸ºï¼ˆ1,1ï¼‰ï¼Œæœ‰å‚è¾“å…¥é»˜è®¤èµ‹å€¼ã€‚/* { x = fx; y = fy; }*/
+	friend ostream& operator<<(ostream &os, const point& p) {//é‡è½½äº†è¾“å‡ºå‡½æ•°
+		os << "(" << p.x << "," << p.y << ")";//è¾“å‡ºï¼ˆx,yï¼‰
 		return os;
 	}
 	friend istream& operator>>(istream& is, point& p) {
-		is >> p.x >> p.y;//ÊäÈëx,y£¬Èç¹ûÊäÈë²»ÕýÈ·£¬¶ÔÏó¸³ÓèÄ¬ÈÏ×´Ì¬¡£
+		is >> p.x >> p.y;//è¾“å…¥x,yï¼Œå¦‚æžœè¾“å…¥ä¸æ­£ç¡®ï¼Œå¯¹è±¡èµ‹äºˆé»˜è®¤çŠ¶æ€ã€‚
 		if (!is)
 			p = point();
 		return is;
@@ -23,7 +23,7 @@ public://ÖØÔØÁËÔËËã·û ÊäÈë>> Êä³ö<< ¸³Öµ= È¡·´- ÏàµÈÅÐ±ð== ²»µÈÅÐ±ð!= Ð¡ÓÚ< ´óÓÚ
 	void operator=(const point& q) {//
 		x = q.x; y = q.y;
 	}
-	point operator-() {//¾¡Á¿²»¸Ä±äÔ­À´µÄµãµÄÖµ
+	point operator-() {//å°½é‡ä¸æ”¹å˜åŽŸæ¥çš„ç‚¹çš„å€¼
 		return point(-x, -y);
 	}
 	bool operator==(const point& b) {
@@ -32,7 +32,7 @@ public://ÖØÔØÁËÔËËã·û ÊäÈë>> Êä³ö<< ¸³Öµ= È¡·´- ÏàµÈÅÐ±ð== ²»µÈÅÐ±ð!= Ð¡ÓÚ< ´óÓÚ
 	bool operator!=(const point& b) {
 		return !(*this == b);
 	}
-	/*	friend bool operator < (const point& a, const point& b) { return a.x * a.x + a.y * a.y < b.x* b.x + b.y * b.y; }//ÔËËã·û<ÖØÔØµÄÁíÒ»ÖÖÐ´·¨ */
+	/*	friend bool operator < (const point& a, const point& b) { return a.x * a.x + a.y * a.y < b.x* b.x + b.y * b.y; }//è¿ç®—ç¬¦<é‡è½½çš„å¦ä¸€ç§å†™æ³• */
 	bool operator < (const point& b) const {
 		return x * x + y * y < b.x* b.x + b.y * b.y;
 	}
@@ -54,7 +54,7 @@ public://ÖØÔØÁËÔËËã·û ÊäÈë>> Êä³ö<< ¸³Öµ= È¡·´- ÏàµÈÅÐ±ð== ²»µÈÅÐ±ð!= Ð¡ÓÚ< ´óÓÚ
 	bool cmpp(point& p, point& q) {
 		return p < q;
 	}
-private://ÓÐÁ½¸öÔªËØ£¬xÊÇºá×ø±ê£¬yÊÇ×Ý×ø±ê
+private://æœ‰ä¸¤ä¸ªå…ƒç´ ï¼Œxæ˜¯æ¨ªåæ ‡ï¼Œyæ˜¯çºµåæ ‡
 	int x; int y;
 };
 
@@ -70,13 +70,11 @@ void main() {
 	int b[4] = { 6,5,4,3 };
 	//	sort(b, b + 4);
 	disp(b, 4);
-	//	sort(a, a + 4,greater<point>());//ÕâÀïµÄÔËËã·ûÒ²ÄÜÖØÔØÁË£¬ÒòÎª
-	//	sort(a, a + 4, cmmp);//µ±±ä³É¹«ÓÐÔªËØ£¬¾Í¿ÉÒÔÁË¡£
-	disp(a, 4);//ÓÉÓÚÄãÏÖÔÚÕâ¸öÊÇË½ÓÐÔªËØ£¬ÎÞ·¨·ÃÎÊµ½Ñ½¡£
-	//sortÅÅÐò£¬Ä¬ÈÏÓÉÐ¡µ½´ó£¬Èç¹û¼ÓÁËcmp£¬·µ»Øa>b,ÄÇÃ´¾Í±ä³ÉÁËÓÉ´óµ½Ð¡£¬ÒòÎªÐ¡£¬·µ»ØÁË0.
-	//Í¬Àí£¬Èç¹ûÔËËã·ûÖØÔØ£¬Ð¡ÓÚºÅ<±ä´óÓÚºÅ>£¬ÄÇÃ´¾ÍÓÉÐ¡µ½´ó£¬±ä³ÉÁËÓÉ´óµ½Ð¡¡£
-	// ¹ØÓÚÎªÊ²Ã´ÓÐµÄÊ±ºòÐèÒªfriend£¬ÓÐµÄÊ±ºò²»ÐèÒª£¬àÅ£¬ÔÙ¿´¿´°É¡£
-	//Ã÷Ìì¿´¿´¼Ì³ÐµÄÎÊÌâ£¬»¹ÓÐÐéº¯Êý£¬¹¹ÔìÎÊÌâ¡£
-	//µÃ£¬¼Ì³ÐºÍÐéº¯ÊýµÄÎÊÌâ£¬ÏÂ´ÎÏëÆðÀ´ÔÙËµ°É¡£
-	//ÖØÔØÔËËã·û£¬¿ÉÒÔÓÃ³ÉÔ±º¯Êý£¬Ò²¿ÉÒÔÓÃÓÑÔªº¯Êý£¬<<ºÍ>>ÐèÒªÓÑÔª£¬²»´íµÄ£¬
+	//	sort(a, a + 4,greater<point>());//è¿™é‡Œçš„è¿ç®—ç¬¦ä¹Ÿèƒ½é‡è½½äº†ï¼Œå› ä¸º
+	//	sort(a, a + 4, cmmp);//å½“å˜æˆå…¬æœ‰å…ƒç´ ï¼Œå°±å¯ä»¥äº†ã€‚
+	disp(a, 4);//ç”±äºŽä½ çŽ°åœ¨è¿™ä¸ªæ˜¯ç§æœ‰å…ƒç´ ï¼Œæ— æ³•è®¿é—®åˆ°å‘€ã€‚
+	//sortæŽ’åºï¼Œé»˜è®¤ç”±å°åˆ°å¤§ï¼Œå¦‚æžœåŠ äº†cmpï¼Œè¿”å›ža>b,é‚£ä¹ˆå°±å˜æˆäº†ç”±å¤§åˆ°å°ï¼Œå› ä¸ºå°ï¼Œè¿”å›žäº†0.
+	//åŒç†ï¼Œå¦‚æžœè¿ç®—ç¬¦é‡è½½ï¼Œå°äºŽå·<å˜å¤§äºŽå·>ï¼Œé‚£ä¹ˆå°±ç”±å°åˆ°å¤§ï¼Œå˜æˆäº†ç”±å¤§åˆ°å°ã€‚
+	
+	//é‡è½½è¿ç®—ç¬¦ï¼Œå¯ä»¥ç”¨æˆå‘˜å‡½æ•°ï¼Œä¹Ÿå¯ä»¥ç”¨å‹å…ƒå‡½æ•°ï¼Œ<<å’Œ>>éœ€è¦å‹å…ƒï¼Œä¸é”™çš„ï¼Œ
 }
